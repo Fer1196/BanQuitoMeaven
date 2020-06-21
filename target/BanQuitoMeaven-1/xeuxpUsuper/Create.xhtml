@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XeuxpUsuperCreateDlg" widgetVar="XeuxpUsuperCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateXeuxpUsuperTitle}">
+            <h:form id="XeuxpUsuperCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xeuxpUsuperController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateXeuxpUsuperLabel_xeuxpUsuperPK_xeuxpFecasi}" for="xeuxpUsuperPK_xeuxpFecasi" />
+                        <p:calendar id="xeuxpUsuperPK_xeuxpFecasi" pattern="MM/dd/yyyy" value="#{xeuxpUsuperController.selected.xeuxpUsuperPK.xeuxpFecasi}" title="#{bundle.EditXeuxpUsuperTitle_xeuxpUsuperPK_xeuxpFecasi}" required="true" requiredMessage="#{bundle.EditXeuxpUsuperRequiredMessage_xeuxpUsuperPK_xeuxpFecasi}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateXeuxpUsuperLabel_xeuxpFeccam}" for="xeuxpFeccam" />
+                        <p:calendar id="xeuxpFeccam" pattern="MM/dd/yyyy" value="#{xeuxpUsuperController.selected.xeuxpFeccam}" title="#{bundle.EditXeuxpUsuperTitle_xeuxpFeccam}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateXeuxpUsuperLabel_xeusuUsuar}" for="xeusuUsuar" />
+                        <p:selectOneMenu id="xeusuUsuar" value="#{xeuxpUsuperController.selected.xeusuUsuar}" required="true" requiredMessage="#{bundle.EditXeuxpUsuperRequiredMessage_xeusuUsuar}">
+                            <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"
+                                           var="xeusuUsuarItem"
+                                           itemValue="#{xeusuUsuarItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{xeuxpUsuperController.create}" value="#{bundle.Save}" update="display,:XeuxpUsuperListForm:datalist,:growl" oncomplete="handleSubmit(args,'XeuxpUsuperCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="XeuxpUsuperCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

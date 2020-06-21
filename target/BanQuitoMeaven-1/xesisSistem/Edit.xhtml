@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XesisSistemEditDlg" widgetVar="XesisSistemEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditXesisSistemTitle}">
+            <h:form id="XesisSistemEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xesisSistemController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditXesisSistemLabel_xesisCodsis}" for="xesisCodsis" />
+                        <p:inputText id="xesisCodsis" value="#{xesisSistemController.selected.xesisCodsis}" title="#{bundle.EditXesisSistemTitle_xesisCodsis}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xesisCodsis}"/>
+                        <p:outputLabel value="#{bundle.EditXesisSistemLabel_xesisDescri}" for="xesisDescri" />
+                        <p:inputText id="xesisDescri" value="#{xesisSistemController.selected.xesisDescri}" title="#{bundle.EditXesisSistemTitle_xesisDescri}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xesisDescri}"/>
+                        <p:outputLabel value="#{bundle.EditXesisSistemLabel_codigoAplicacion}" for="codigoAplicacion" />
+                        <p:selectOneMenu id="codigoAplicacion" value="#{xesisSistemController.selected.codigoAplicacion}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{aplicacionController.itemsAvailableSelectOne}"
+                                           var="codigoAplicacionItem"
+                                           itemValue="#{codigoAplicacionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditXesisSistemLabel_xeestEstado}" for="xeestEstado" />
+                        <p:selectOneMenu id="xeestEstado" value="#{xesisSistemController.selected.xeestEstado}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xeestEstado}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{xeestEstadoController.itemsAvailableSelectOne}"
+                                           var="xeestEstadoItem"
+                                           itemValue="#{xeestEstadoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{xesisSistemController.update}" value="#{bundle.Save}" update="display,:XesisSistemListForm:datalist,:growl" oncomplete="handleSubmit(args, 'XesisSistemEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="XesisSistemEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

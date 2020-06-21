@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XeestEstadoCreateDlg" widgetVar="XeestEstadoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateXeestEstadoTitle}">
+            <h:form id="XeestEstadoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xeestEstadoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateXeestEstadoLabel_xeestEstadoPK_xeestCodigo}" for="xeestEstadoPK_xeestCodigo" />
+                        <p:inputText id="xeestEstadoPK_xeestCodigo" value="#{xeestEstadoController.selected.xeestEstadoPK.xeestCodigo}" title="#{bundle.CreateXeestEstadoTitle_xeestEstadoPK_xeestCodigo}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestEstadoPK_xeestCodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateXeestEstadoLabel_xeestDescri}" for="xeestDescri" />
+                        <p:inputText id="xeestDescri" value="#{xeestEstadoController.selected.xeestDescri}" title="#{bundle.CreateXeestEstadoTitle_xeestDescri}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestDescri}"/>
+                        <p:outputLabel value="#{bundle.CreateXeestEstadoLabel_xeusuUsuar}" for="xeusuUsuar" />
+                        <p:selectOneMenu id="xeusuUsuar" value="#{xeestEstadoController.selected.xeusuUsuar}" required="true" requiredMessage="#{bundle.EditXeestEstadoRequiredMessage_xeusuUsuar}">
+                            <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"
+                                           var="xeusuUsuarItem"
+                                           itemValue="#{xeusuUsuarItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateXeestEstadoLabel_peempCodigo}" for="peempCodigo" />
+                        <p:selectOneMenu id="peempCodigo" value="#{xeestEstadoController.selected.peempCodigo}" required="true" requiredMessage="#{bundle.EditXeestEstadoRequiredMessage_peempCodigo}">
+                            <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"
+                                           var="peempCodigoItem"
+                                           itemValue="#{peempCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{xeestEstadoController.create}" value="#{bundle.Save}" update="display,:XeestEstadoListForm:datalist,:growl" oncomplete="handleSubmit(args,'XeestEstadoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="XeestEstadoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

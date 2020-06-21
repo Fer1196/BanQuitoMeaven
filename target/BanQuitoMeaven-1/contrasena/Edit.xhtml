@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContrasenaEditDlg" widgetVar="ContrasenaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditContrasenaTitle}">
+            <h:form id="ContrasenaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contrasenaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditContrasenaLabel_contrasenaActual}" for="contrasenaActual" />
+                        <p:inputText id="contrasenaActual" value="#{contrasenaController.selected.contrasenaActual}" title="#{bundle.EditContrasenaTitle_contrasenaActual}" required="true" requiredMessage="#{bundle.EditContrasenaRequiredMessage_contrasenaActual}"/>
+                        <p:outputLabel value="#{bundle.EditContrasenaLabel_contrasenaPasada}" for="contrasenaPasada" />
+                        <p:inputText id="contrasenaPasada" value="#{contrasenaController.selected.contrasenaPasada}" title="#{bundle.EditContrasenaTitle_contrasenaPasada}" />
+                        <p:outputLabel value="#{bundle.EditContrasenaLabel_peempCodigo}" for="peempCodigo" />
+                        <p:selectOneMenu id="peempCodigo" value="#{contrasenaController.selected.peempCodigo}" required="true" requiredMessage="#{bundle.EditContrasenaRequiredMessage_peempCodigo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"
+                                           var="peempCodigoItem"
+                                           itemValue="#{peempCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contrasenaController.update}" value="#{bundle.Save}" update="display,:ContrasenaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ContrasenaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ContrasenaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

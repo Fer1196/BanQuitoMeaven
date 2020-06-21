@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeempEmpleViewDlg" widgetVar="PeempEmpleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPeempEmpleTitle}">
+            <h:form id="PeempEmpleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peempEmpleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempCodigo}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempCodigo}" title="#{bundle.ViewPeempEmpleTitle_peempCodigo}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempApelli}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempApelli}" title="#{bundle.ViewPeempEmpleTitle_peempApelli}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempNombre}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempNombre}" title="#{bundle.ViewPeempEmpleTitle_peempNombre}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempCedula}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempCedula}" title="#{bundle.ViewPeempEmpleTitle_peempCedula}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempFecnac}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempFecnac}" title="#{bundle.ViewPeempEmpleTitle_peempFecnac}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempDirec}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempDirec}" title="#{bundle.ViewPeempEmpleTitle_peempDirec}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempTelefo}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempTelefo}" title="#{bundle.ViewPeempEmpleTitle_peempTelefo}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempCargas}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempCargas}" title="#{bundle.ViewPeempEmpleTitle_peempCargas}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peempEmail}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peempEmail}" title="#{bundle.ViewPeempEmpleTitle_peempEmail}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_xeusuUsuar}"/>
+                        <h:outputText value="#{peempEmpleController.selected.xeusuUsuar}" title="#{bundle.ViewPeempEmpleTitle_xeusuUsuar}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_peescCodigo}"/>
+                        <h:outputText value="#{peempEmpleController.selected.peescCodigo}" title="#{bundle.ViewPeempEmpleTitle_peescCodigo}"/>
+                        <h:outputText value="#{bundle.ViewPeempEmpleLabel_pesexCodigo}"/>
+                        <h:outputText value="#{peempEmpleController.selected.pesexCodigo}" title="#{bundle.ViewPeempEmpleTitle_pesexCodigo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PeempEmpleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

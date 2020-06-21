@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeempEmpleEditDlg" widgetVar="PeempEmpleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPeempEmpleTitle}">
+            <h:form id="PeempEmpleEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peempEmpleController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempCodigo}" for="peempCodigo" />
+                        <p:inputText id="peempCodigo" value="#{peempEmpleController.selected.peempCodigo}" title="#{bundle.EditPeempEmpleTitle_peempCodigo}" required="true" requiredMessage="#{bundle.EditPeempEmpleRequiredMessage_peempCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempApelli}" for="peempApelli" />
+                        <p:inputText id="peempApelli" value="#{peempEmpleController.selected.peempApelli}" title="#{bundle.EditPeempEmpleTitle_peempApelli}" required="true" requiredMessage="#{bundle.EditPeempEmpleRequiredMessage_peempApelli}"/>
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempNombre}" for="peempNombre" />
+                        <p:inputText id="peempNombre" value="#{peempEmpleController.selected.peempNombre}" title="#{bundle.EditPeempEmpleTitle_peempNombre}" required="true" requiredMessage="#{bundle.EditPeempEmpleRequiredMessage_peempNombre}"/>
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempCedula}" for="peempCedula" />
+                        <p:inputText id="peempCedula" value="#{peempEmpleController.selected.peempCedula}" title="#{bundle.EditPeempEmpleTitle_peempCedula}" />
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempFecnac}" for="peempFecnac" />
+                        <p:calendar id="peempFecnac" pattern="MM/dd/yyyy" value="#{peempEmpleController.selected.peempFecnac}" title="#{bundle.EditPeempEmpleTitle_peempFecnac}" required="true" requiredMessage="#{bundle.EditPeempEmpleRequiredMessage_peempFecnac}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempDirec}" for="peempDirec" />
+                        <p:inputText id="peempDirec" value="#{peempEmpleController.selected.peempDirec}" title="#{bundle.EditPeempEmpleTitle_peempDirec}" />
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempTelefo}" for="peempTelefo" />
+                        <p:inputText id="peempTelefo" value="#{peempEmpleController.selected.peempTelefo}" title="#{bundle.EditPeempEmpleTitle_peempTelefo}" />
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempCargas}" for="peempCargas" />
+                        <p:inputText id="peempCargas" value="#{peempEmpleController.selected.peempCargas}" title="#{bundle.EditPeempEmpleTitle_peempCargas}" required="true" requiredMessage="#{bundle.EditPeempEmpleRequiredMessage_peempCargas}"/>
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peempEmail}" for="peempEmail" />
+                        <p:inputText id="peempEmail" value="#{peempEmpleController.selected.peempEmail}" title="#{bundle.EditPeempEmpleTitle_peempEmail}" />
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_xeusuUsuar}" for="xeusuUsuar" />
+                        <p:selectOneMenu id="xeusuUsuar" value="#{peempEmpleController.selected.xeusuUsuar}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"
+                                           var="xeusuUsuarItem"
+                                           itemValue="#{xeusuUsuarItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_peescCodigo}" for="peescCodigo" />
+                        <p:selectOneMenu id="peescCodigo" value="#{peempEmpleController.selected.peescCodigo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{peescEstcivController.itemsAvailableSelectOne}"
+                                           var="peescCodigoItem"
+                                           itemValue="#{peescCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPeempEmpleLabel_pesexCodigo}" for="pesexCodigo" />
+                        <p:selectOneMenu id="pesexCodigo" value="#{peempEmpleController.selected.pesexCodigo}" required="true" requiredMessage="#{bundle.EditPeempEmpleRequiredMessage_pesexCodigo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}"
+                                           var="pesexCodigoItem"
+                                           itemValue="#{pesexCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{peempEmpleController.update}" value="#{bundle.Save}" update="display,:PeempEmpleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PeempEmpleEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PeempEmpleEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

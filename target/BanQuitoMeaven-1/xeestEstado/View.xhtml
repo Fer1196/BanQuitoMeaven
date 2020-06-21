@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XeestEstadoViewDlg" widgetVar="XeestEstadoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewXeestEstadoTitle}">
+            <h:form id="XeestEstadoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xeestEstadoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewXeestEstadoLabel_xeestEstadoPK_xeestCodigo}"/>
+                        <h:outputText value="#{xeestEstadoController.selected.xeestEstadoPK.xeestCodigo}" title="#{bundle.ViewXeestEstadoTitle_xeestEstadoPK_xeestCodigo}"/>
+                        <h:outputText value="#{bundle.ViewXeestEstadoLabel_xeestDescri}"/>
+                        <h:outputText value="#{xeestEstadoController.selected.xeestDescri}" title="#{bundle.ViewXeestEstadoTitle_xeestDescri}"/>
+                        <h:outputText value="#{bundle.ViewXeestEstadoLabel_xeusuUsuar}"/>
+                        <h:outputText value="#{xeestEstadoController.selected.xeusuUsuar}" title="#{bundle.ViewXeestEstadoTitle_xeusuUsuar}"/>
+                        <h:outputText value="#{bundle.ViewXeestEstadoLabel_peempCodigo}"/>
+                        <h:outputText value="#{xeestEstadoController.selected.peempCodigo}" title="#{bundle.ViewXeestEstadoTitle_peempCodigo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="XeestEstadoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

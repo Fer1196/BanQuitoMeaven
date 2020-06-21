@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XeperPerfil2CreateDlg" widgetVar="XeperPerfil2CreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateXeperPerfil2Title}">
+            <h:form id="XeperPerfil2CreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xeperPerfil2Controller.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateXeperPerfil2Label_xeperCodper}" for="xeperCodper" />
+                        <p:inputText id="xeperCodper" value="#{xeperPerfil2Controller.selected.xeperCodper}" title="#{bundle.CreateXeperPerfil2Title_xeperCodper}" required="true" requiredMessage="#{bundle.CreateXeperPerfil2RequiredMessage_xeperCodper}"/>
+                        <p:outputLabel value="#{bundle.CreateXeperPerfil2Label_xeperDescri}" for="xeperDescri" />
+                        <p:inputText id="xeperDescri" value="#{xeperPerfil2Controller.selected.xeperDescri}" title="#{bundle.CreateXeperPerfil2Title_xeperDescri}" required="true" requiredMessage="#{bundle.CreateXeperPerfil2RequiredMessage_xeperDescri}"/>
+                        <p:outputLabel value="#{bundle.CreateXeperPerfil2Label_xeperObserv}" for="xeperObserv" />
+                        <p:inputText id="xeperObserv" value="#{xeperPerfil2Controller.selected.xeperObserv}" title="#{bundle.CreateXeperPerfil2Title_xeperObserv}" required="true" requiredMessage="#{bundle.CreateXeperPerfil2RequiredMessage_xeperObserv}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{xeperPerfil2Controller.create}" value="#{bundle.Save}" update="display,:XeperPerfil2ListForm:datalist,:growl" oncomplete="handleSubmit(args,'XeperPerfil2CreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="XeperPerfil2CreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

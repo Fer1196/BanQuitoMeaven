@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XeusuUsuarEditDlg" widgetVar="XeusuUsuarEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditXeusuUsuarTitle}">
+            <h:form id="XeusuUsuarEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xeusuUsuarController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditXeusuUsuarLabel_peempCodigo}" for="peempCodigo" />
+                        <p:inputText id="peempCodigo" value="#{xeusuUsuarController.selected.peempCodigo}" title="#{bundle.EditXeusuUsuarTitle_peempCodigo}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_peempCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuPassword}" for="xeusuPassword" />
+                        <p:inputText id="xeusuPassword" value="#{xeusuUsuarController.selected.xeusuPassword}" title="#{bundle.EditXeusuUsuarTitle_xeusuPassword}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_xeusuPassword}">
+                            <f:validateLength minimum="5"/>
+                        </p:inputText>
+                        <p:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuPiefirma}" for="xeusuPiefirma" />
+                        <p:inputText id="xeusuPiefirma" value="#{xeusuUsuarController.selected.xeusuPiefirma}" title="#{bundle.EditXeusuUsuarTitle_xeusuPiefirma}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_xeusuPiefirma}"/>
+                        <p:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuFecCrea}" for="xeusuFecCrea" />
+                        <p:calendar id="xeusuFecCrea" pattern="MM/dd/yyyy HH:mm:ss" value="#{xeusuUsuarController.selected.xeusuFecCrea}" title="#{bundle.EditXeusuUsuarTitle_xeusuFecCrea}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_xeusuFecCrea}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuFecUltimoCambio}" for="xeusuFecUltimoCambio" />
+                        <p:calendar id="xeusuFecUltimoCambio" pattern="MM/dd/yyyy HH:mm:ss" value="#{xeusuUsuarController.selected.xeusuFecUltimoCambio}" title="#{bundle.EditXeusuUsuarTitle_xeusuFecUltimoCambio}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_xeusuFecUltimoCambio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditXeusuUsuarLabel_peempEmple}" for="peempEmple" />
+                        <p:selectOneMenu id="peempEmple" value="#{xeusuUsuarController.selected.peempEmple}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_peempEmple}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{peempEmpleController.itemsAvailableSelectOne}"
+                                           var="peempEmpleItem"
+                                           itemValue="#{peempEmpleItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{xeusuUsuarController.update}" value="#{bundle.Save}" update="display,:XeusuUsuarListForm:datalist,:growl" oncomplete="handleSubmit(args, 'XeusuUsuarEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="XeusuUsuarEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XerolRol2CreateDlg" widgetVar="XerolRol2CreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateXerolRol2Title}">
+            <h:form id="XerolRol2CreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xerolRol2Controller.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateXerolRol2Label_xerolRol2PK_xeperCodper}" for="xerolRol2PK_xeperCodper" />
+                        <p:inputText id="xerolRol2PK_xeperCodper" value="#{xerolRol2Controller.selected.xerolRol2PK.xeperCodper}" title="#{bundle.CreateXerolRol2Title_xerolRol2PK_xeperCodper}" required="true" requiredMessage="#{bundle.CreateXerolRol2RequiredMessage_xerolRol2PK_xeperCodper}"/>
+                        <p:outputLabel value="#{bundle.CreateXerolRol2Label_xerolInserc}" for="xerolInserc" />
+                        <p:inputText id="xerolInserc" value="#{xerolRol2Controller.selected.xerolInserc}" title="#{bundle.CreateXerolRol2Title_xerolInserc}" required="true" requiredMessage="#{bundle.CreateXerolRol2RequiredMessage_xerolInserc}"/>
+                        <p:outputLabel value="#{bundle.CreateXerolRol2Label_xerolActual}" for="xerolActual" />
+                        <p:inputText id="xerolActual" value="#{xerolRol2Controller.selected.xerolActual}" title="#{bundle.CreateXerolRol2Title_xerolActual}" required="true" requiredMessage="#{bundle.CreateXerolRol2RequiredMessage_xerolActual}"/>
+                        <p:outputLabel value="#{bundle.CreateXerolRol2Label_xerolElimin}" for="xerolElimin" />
+                        <p:inputText id="xerolElimin" value="#{xerolRol2Controller.selected.xerolElimin}" title="#{bundle.CreateXerolRol2Title_xerolElimin}" required="true" requiredMessage="#{bundle.CreateXerolRol2RequiredMessage_xerolElimin}"/>
+                        <p:outputLabel value="#{bundle.CreateXerolRol2Label_xerolConsul}" for="xerolConsul" />
+                        <p:inputText id="xerolConsul" value="#{xerolRol2Controller.selected.xerolConsul}" title="#{bundle.CreateXerolRol2Title_xerolConsul}" required="true" requiredMessage="#{bundle.CreateXerolRol2RequiredMessage_xerolConsul}"/>
+                        <p:outputLabel value="#{bundle.CreateXerolRol2Label_xeusuUsuar}" for="xeusuUsuar" />
+                        <p:selectOneMenu id="xeusuUsuar" value="#{xerolRol2Controller.selected.xeusuUsuar}" required="true" requiredMessage="#{bundle.EditXerolRol2RequiredMessage_xeusuUsuar}">
+                            <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"
+                                           var="xeusuUsuarItem"
+                                           itemValue="#{xeusuUsuarItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{xerolRol2Controller.create}" value="#{bundle.Save}" update="display,:XerolRol2ListForm:datalist,:growl" oncomplete="handleSubmit(args,'XerolRol2CreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="XerolRol2CreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

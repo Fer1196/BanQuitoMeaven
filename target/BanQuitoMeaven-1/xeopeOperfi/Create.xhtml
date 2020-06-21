@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="XeopeOperfiCreateDlg" widgetVar="XeopeOperfiCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateXeopeOperfiTitle}">
+            <h:form id="XeopeOperfiCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{xeopeOperfiController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateXeopeOperfiLabel_xeopeFasign}" for="xeopeFasign" />
+                        <p:calendar id="xeopeFasign" pattern="MM/dd/yyyy HH:mm:ss" value="#{xeopeOperfiController.selected.xeopeFasign}" title="#{bundle.EditXeopeOperfiTitle_xeopeFasign}" required="true" requiredMessage="#{bundle.EditXeopeOperfiRequiredMessage_xeopeFasign}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateXeopeOperfiLabel_xeopeEstado}" for="xeopeEstado" />
+                        <p:inputText id="xeopeEstado" value="#{xeopeOperfiController.selected.xeopeEstado}" title="#{bundle.CreateXeopeOperfiTitle_xeopeEstado}" required="true" requiredMessage="#{bundle.CreateXeopeOperfiRequiredMessage_xeopeEstado}"/>
+                        <p:outputLabel value="#{bundle.CreateXeopeOperfiLabel_xeopcCodopc}" for="xeopcCodopc" />
+                        <p:selectOneMenu id="xeopcCodopc" value="#{xeopeOperfiController.selected.xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXeopeOperfiRequiredMessage_xeopcCodopc}">
+                            <f:selectItems value="#{xeopcOpcionController.itemsAvailableSelectOne}"
+                                           var="xeopcCodopcItem"
+                                           itemValue="#{xeopcCodopcItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{xeopeOperfiController.create}" value="#{bundle.Save}" update="display,:XeopeOperfiListForm:datalist,:growl" oncomplete="handleSubmit(args,'XeopeOperfiCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="XeopeOperfiCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
